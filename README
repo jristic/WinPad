@@ -1,4 +1,4 @@
 WinPad is a utility for using a 360 gamepad to navigate Windows that I'm working on. Built on XNA for accessing gamepad.
 
 Uses WindowsInput for sending input. http://inputsimulator.codeplex.com/
-WindowsInput used under the Microsoft Public License, see WinPad/WindowsInput/Ms-pl.txt
+WindowsInput used under the Microsoft Public License, see WinPad/WindowsInput/Ms-Pl.txt

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -9,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
+using WindowsInput;
 
 namespace WinPad
 {
@@ -22,14 +23,21 @@ namespace WinPad
 
 		private GamePadState currentGamePadState, previousGamePadState;
 
+		InputSimulator inputSim;
+
 		public WinPad()
 		{
 			graphics = new GraphicsDeviceManager(this);
+			inputSim = new InputSimulator();
 		}
 
 		protected override void Initialize()
 		{
 			this.IsMouseVisible = true;
+
+			graphics.PreferredBackBufferWidth = 300;
+			graphics.PreferredBackBufferHeight = 200;
+			graphics.ApplyChanges();
 
 			base.Initialize();
 		}
@@ -38,10 +46,13 @@ namespace WinPad
 		{
 			updateGamePad();
 
+			// Apply cursor translation
 			int cursorTranslateX = (int)(gameTime.ElapsedGameTime.Milliseconds * currentGamePadState.ThumbSticks.Left.X);
-			int cursorTranslateY = (int)(gameTime.ElapsedGameTime.Milliseconds * currentGamePadState.ThumbSticks.Left.Y);
-			Console.Out.WriteLine(cursorTranslateX + ", " + cursorTranslateY);
-			Cursor.Position = new System.Drawing.Point(Cursor.Position.X + cursorTranslateX, Cursor.Position.Y - cursorTranslateY);
+			int cursorTranslateY = (int)(gameTime.ElapsedGameTime.Milliseconds * currentGamePadState.ThumbSticks.Left.Y * -1);
+			inputSim.Mouse.MoveMouseBy(cursorTranslateX, cursorTranslateY);
+
+			// Simulate LMB-click if A is pressed
+			
 
 			base.Update(gameTime);
 		}

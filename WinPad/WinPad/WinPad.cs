@@ -22,12 +22,10 @@ namespace WinPad
 		public WinPad()
 		{
 			graphics = new GraphicsDeviceManager(this);
-			Content.RootDirectory = "Content";
 		}
 
 		protected override void Initialize()
 		{
-			// TODO: Add your initialization logic here
 			this.IsMouseVisible = true;
 
 			base.Initialize();

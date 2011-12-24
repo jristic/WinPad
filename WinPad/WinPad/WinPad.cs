@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -19,6 +20,8 @@ namespace WinPad
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
 
+		private GamePadState currentGamePadState, previousGamePadState;
+
 		public WinPad()
 		{
 			graphics = new GraphicsDeviceManager(this);
@@ -33,7 +36,12 @@ namespace WinPad
 
 		protected override void Update(GameTime gameTime)
 		{
-			Console.Out.WriteLine(gameTime.ElapsedGameTime);
+			updateGamePad();
+
+			int cursorTranslateX = (int)(gameTime.ElapsedGameTime.Milliseconds * currentGamePadState.ThumbSticks.Left.X);
+			int cursorTranslateY = (int)(gameTime.ElapsedGameTime.Milliseconds * currentGamePadState.ThumbSticks.Left.Y);
+			Console.Out.WriteLine(cursorTranslateX + ", " + cursorTranslateY);
+			Cursor.Position = new System.Drawing.Point(Cursor.Position.X + cursorTranslateX, Cursor.Position.Y - cursorTranslateY);
 
 			base.Update(gameTime);
 		}
@@ -42,6 +50,12 @@ namespace WinPad
 		{
 			GraphicsDevice.Clear(Color.Black);
 			base.Draw(gameTime);
+		}
+
+		private void updateGamePad()
+		{
+			previousGamePadState = currentGamePadState;
+			currentGamePadState = GamePad.GetState(PlayerIndex.One);
 		}
 	}
 }

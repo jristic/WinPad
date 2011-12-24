@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPad", "WinPad\WinPad\WinPad.csproj", "{0EF23689-8567-40C2-B501-9C1B669C0DB1}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "WinPadContent", "WinPad\WinPadContent\WinPadContent.contentproj", "{0D2C115D-A4C8-432A-BB91-FB08365D5D74}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,8 +13,6 @@ Global
 		{0EF23689-8567-40C2-B501-9C1B669C0DB1}.Debug|x86.Build.0 = Debug|x86
 		{0EF23689-8567-40C2-B501-9C1B669C0DB1}.Release|x86.ActiveCfg = Release|x86
 		{0EF23689-8567-40C2-B501-9C1B669C0DB1}.Release|x86.Build.0 = Release|x86
-		{0D2C115D-A4C8-432A-BB91-FB08365D5D74}.Debug|x86.ActiveCfg = Debug|x86
-		{0D2C115D-A4C8-432A-BB91-FB08365D5D74}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

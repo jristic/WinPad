@@ -23,8 +23,8 @@ namespace WinPad
 		// SpriteBatch spriteBatch;
 
 		private GamePadState currentGamePadState, previousGamePadState;
-
-		InputSimulator inputSim;
+		private InputSimulator inputSim;
+		private double lastScrollTimeVertical, lastScrollTimeHorizontal;
 
 		public WinPad()
 		{
@@ -93,6 +93,7 @@ namespace WinPad
 				inputSim.Keyboard.KeyPress(VirtualKeyCode.RIGHT);
 			}
 
+			
 			// Simulate alt tab for the left trigger
 			if (currentGamePadState.Triggers.Left > 0.5 && previousGamePadState.Triggers.Left <= 0.5)
 			{
@@ -102,6 +103,27 @@ namespace WinPad
 			else if (currentGamePadState.Triggers.Left <= 0.5 && previousGamePadState.Triggers.Left > 0.5)
 			{
 				inputSim.Keyboard.KeyUp(VirtualKeyCode.MENU);
+			}
+
+
+			// Simulate scrolling for right thumbstick
+			if (currentGamePadState.ThumbSticks.Right.X != 0)
+			{
+				if (previousGamePadState.ThumbSticks.Right.X == 0 ||
+						gameTime.TotalGameTime.TotalMilliseconds - lastScrollTimeHorizontal > 200 - 160 * Math.Abs(currentGamePadState.ThumbSticks.Right.X) )
+				{
+					inputSim.Mouse.HorizontalScroll(Math.Sign(currentGamePadState.ThumbSticks.Right.X));
+					lastScrollTimeHorizontal = gameTime.TotalGameTime.TotalMilliseconds;
+				}
+			}
+			if (currentGamePadState.ThumbSticks.Right.Y != 0)
+			{
+				if (previousGamePadState.ThumbSticks.Right.Y == 0 || 
+						gameTime.TotalGameTime.TotalMilliseconds - lastScrollTimeVertical > 200 - 160 * Math.Abs(currentGamePadState.ThumbSticks.Right.Y) )
+				{
+					inputSim.Mouse.VerticalScroll(Math.Sign(currentGamePadState.ThumbSticks.Right.Y));
+					lastScrollTimeVertical = gameTime.TotalGameTime.TotalMilliseconds;
+				}
 			}
 
 

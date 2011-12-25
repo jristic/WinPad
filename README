@@ -2,3 +2,12 @@ WinPad is a utility for using a 360 gamepad to navigate Windows that I'm working
 
 Uses WindowsInput for sending input. http://inputsimulator.codeplex.com/
 WindowsInput used under the Microsoft Public License, see WinPad/WindowsInput/Ms-Pl.txt
+
+
+ISSUES: 
+Attempting to drag/minimize/close WinPad using the gamepad causes the updates to not occur, so gamepad is unusable until it is deselected.
+
+
+TODO: 
+Add repeating presses of arrow keys when dpad direction is held.
+Smooth out mouse motion if possible.

@@ -11,7 +11,7 @@ X to do right mouse button click
 Dpad to use arrow keys.
 Right-trigger to scroll.
 Left-trigger to alt-tab, then left/right on dpad or up/down on right-thumbstick to select.
-Left- and right-shoulder, start, and back to toggle input simulation, for instance when starting a game that uses the gamepad.
+Left- and right-shoulder, start, and back (all four at once) to toggle input simulation, for instance when starting a game that uses the gamepad.
 
 ISSUES: 
 Attempting to drag/minimize/close WinPad using the gamepad causes update cycle to stop, so gamepad is unusable until it is deselected. (It can however be closed from the taskbar using the gamepad)

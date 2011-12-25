@@ -1,13 +1,21 @@
 WinPad is a utility for using a 360 gamepad to navigate Windows that I'm working on. Built on XNA for accessing gamepad.
+This software is distributed under the Microsoft Public License, see Ms-Pl.txt
 
 Uses WindowsInput for sending input. http://inputsimulator.codeplex.com/
-WindowsInput used under the Microsoft Public License, see WinPad/WindowsInput/Ms-Pl.txt
+
+
+INSTRUCTIONS:
+Left-thumbstick to move the mouse cursor.
+A to do left mouse button click.
+X to do right mouse button click
+Dpad to use arrow keys.
+Left-trigger to alt-tab, then left/right on dpad to select.
 
 
 ISSUES: 
-Attempting to drag/minimize/close WinPad using the gamepad causes the updates to not occur, so gamepad is unusable until it is deselected.
+Attempting to drag/minimize/close WinPad using the gamepad causes update cycle to stop, so gamepad is unusable until it is deselected.
 
 
 TODO: 
 Add repeating presses of arrow keys when dpad direction is held.
-Smooth out mouse motion if possible.
+Remove the window and make it a system tray application.

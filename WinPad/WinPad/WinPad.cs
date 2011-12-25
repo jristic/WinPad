@@ -20,7 +20,7 @@ namespace WinPad
 	public class WinPad : Microsoft.Xna.Framework.Game
 	{
 		GraphicsDeviceManager graphics;
-		SpriteBatch spriteBatch;
+		// SpriteBatch spriteBatch;
 
 		private GamePadState currentGamePadState, previousGamePadState;
 
@@ -92,6 +92,18 @@ namespace WinPad
 			{
 				inputSim.Keyboard.KeyPress(VirtualKeyCode.RIGHT);
 			}
+
+			// Simulate alt tab for the left trigger
+			if (currentGamePadState.Triggers.Left > 0.5 && previousGamePadState.Triggers.Left <= 0.5)
+			{
+				inputSim.Keyboard.KeyDown(VirtualKeyCode.MENU);
+				inputSim.Keyboard.KeyPress(VirtualKeyCode.TAB);
+			}
+			else if (currentGamePadState.Triggers.Left <= 0.5 && previousGamePadState.Triggers.Left > 0.5)
+			{
+				inputSim.Keyboard.KeyUp(VirtualKeyCode.MENU);
+			}
+
 
 			base.Update(gameTime);
 		}

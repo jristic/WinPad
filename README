@@ -14,9 +14,8 @@ Left-trigger to alt-tab, then left/right on dpad or up/down on right-thumbstick 
 Left- and right-shoulder, start, and back (all four at once) to toggle input simulation, for instance when starting a game that uses the gamepad.
 
 ISSUES: 
-Attempting to drag/minimize/close WinPad using the gamepad causes update cycle to stop, so gamepad is unusable until it is deselected. (It can however be closed from the taskbar using the gamepad)
+Attempting close WinPad using the gamepad causes update cycle to stop, so gamepad is unusable until it is deselected.
 When the User Account Control dialog comes up, the program is suspended so the gamepad is unusable until it is gone.
 
 TODO: 
 Add repeating presses of arrow keys when dpad direction is held.
-Remove the window and make it a system tray application.

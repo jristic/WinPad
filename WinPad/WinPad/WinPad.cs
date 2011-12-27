@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Windows.Forms;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-
 using WindowsInput;
 using WindowsInput.Native;
+
+using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 
 namespace WinPad
 {
@@ -19,8 +14,7 @@ namespace WinPad
 	/// </summary>
 	public class WinPad : Microsoft.Xna.Framework.Game
 	{
-		GraphicsDeviceManager graphics;
-		// SpriteBatch spriteBatch;
+		NotifyIcon nIcon;
 
 		private GamePadState currentGamePadState, previousGamePadState;
 		private InputSimulator inputSim;
@@ -29,18 +23,28 @@ namespace WinPad
 
 		public WinPad()
 		{
-			graphics = new GraphicsDeviceManager(this);
 			inputSim = new InputSimulator();
 		}
 
 		protected override void Initialize()
 		{
-			this.IsMouseVisible = true;
+			IsMouseVisible = true;
 			inputDisabled = false;
 
-			graphics.PreferredBackBufferWidth = 300;
-			graphics.PreferredBackBufferHeight = 200;
-			graphics.ApplyChanges();
+			nIcon = new NotifyIcon();
+			nIcon.Text = "WinPad";
+			nIcon.Icon = new System.Drawing.Icon("Game.ico", 40, 40);
+			nIcon.Visible = true; 
+
+			MenuItem exitItem = new MenuItem();
+			exitItem.Index = 0;
+			exitItem.Text = "Close";
+			exitItem.Click += new System.EventHandler(this.exitItem_Click);
+			nIcon.ContextMenu = new ContextMenu();
+			nIcon.ContextMenu.MenuItems.Add(exitItem);
+
+			Form f = (Form)Form.FromHandle(Window.Handle);
+			f.Shown += new EventHandler(Window_Shown);
 
 			base.Initialize();
 		}
@@ -140,6 +144,8 @@ namespace WinPad
 			base.Update(gameTime);
 		}
 
+		
+
 		protected override void Draw(GameTime gameTime)
 		{
 			base.Draw(gameTime);
@@ -149,6 +155,17 @@ namespace WinPad
 		{
 			previousGamePadState = currentGamePadState;
 			currentGamePadState = GamePad.GetState(PlayerIndex.One);
+		}
+
+		protected void Window_Shown(object sender, EventArgs e)
+		{
+			Form f = (Form)Form.FromHandle(Window.Handle);
+			f.Hide();
+		}
+
+		private void exitItem_Click(object Sender, EventArgs e)
+		{
+			Exit();
 		}
 	}
 }

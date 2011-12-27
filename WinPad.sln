@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPad", "WinPad\WinPad\Win
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsInput", "WinPad\WindowsInput\WindowsInput.csproj", "{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}"
 EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "WinPadContent", "WinPadContent\WinPadContent.contentproj", "{A85DC75B-6A73-4A0E-8D13-985123AF32D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,12 @@ Global
 		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A85DC75B-6A73-4A0E-8D13-985123AF32D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85DC75B-6A73-4A0E-8D13-985123AF32D2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A85DC75B-6A73-4A0E-8D13-985123AF32D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A85DC75B-6A73-4A0E-8D13-985123AF32D2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85DC75B-6A73-4A0E-8D13-985123AF32D2}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A85DC75B-6A73-4A0E-8D13-985123AF32D2}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -165,6 +165,7 @@ namespace WinPad
 
 		private void exitItem_Click(object Sender, EventArgs e)
 		{
+			nIcon.Visible = false;
 			Exit();
 		}
 	}

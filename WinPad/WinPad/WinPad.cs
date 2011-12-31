@@ -21,9 +21,17 @@ namespace WinPad
 		private double lastScrollTimeVertical, lastScrollTimeHorizontal;
 		private Boolean inputDisabled;
 
+		private VirtualKeyCode[] keycode;
+		private double[] lastRepeatTime;
+		private Boolean[] repeating;
+
+
 		public WinPad()
 		{
 			inputSim = new InputSimulator();
+			lastRepeatTime = new double[4];
+			repeating = new Boolean[4] {false, false, false, false};
+			keycode = new VirtualKeyCode[4] { VirtualKeyCode.UP, VirtualKeyCode.DOWN, VirtualKeyCode.LEFT, VirtualKeyCode.RIGHT };
 		}
 
 		protected override void Initialize()
@@ -91,22 +99,47 @@ namespace WinPad
 					inputSim.Mouse.RightButtonUp();
 				}
 
-				// Simulate arrow keys for the d-pad 
-				if (currentGamePadState.DPad.Up == ButtonState.Pressed && previousGamePadState.DPad.Up == ButtonState.Released)
+				// Simulate arrow keys for the d-pad
+				ButtonState[] currentDirectionState = new ButtonState[4] { currentGamePadState.DPad.Up, currentGamePadState.DPad.Down,
+						currentGamePadState.DPad.Left, currentGamePadState.DPad.Right
+				};
+				ButtonState[] previousDirectionState = new ButtonState[4] { previousGamePadState.DPad.Up, previousGamePadState.DPad.Down,
+						previousGamePadState.DPad.Left, previousGamePadState.DPad.Right
+				};
+				for (int dir = 0 ; dir < 4 ; dir++)
 				{
-					inputSim.Keyboard.KeyPress(VirtualKeyCode.UP);
-				}
-				if (currentGamePadState.DPad.Down == ButtonState.Pressed && previousGamePadState.DPad.Down == ButtonState.Released)
-				{
-					inputSim.Keyboard.KeyPress(VirtualKeyCode.DOWN);
-				}
-				if (currentGamePadState.DPad.Left == ButtonState.Pressed && previousGamePadState.DPad.Left == ButtonState.Released)
-				{
-					inputSim.Keyboard.KeyPress(VirtualKeyCode.LEFT);
-				}
-				if (currentGamePadState.DPad.Right == ButtonState.Pressed && previousGamePadState.DPad.Right == ButtonState.Released)
-				{
-					inputSim.Keyboard.KeyPress(VirtualKeyCode.RIGHT);
+					if (currentDirectionState[dir] == ButtonState.Pressed)
+					{
+						if (previousDirectionState[dir] == ButtonState.Released)
+						{
+							inputSim.Keyboard.KeyPress(keycode[dir]);
+							lastRepeatTime[dir] = gameTime.TotalGameTime.TotalMilliseconds;
+						}
+						else
+						{
+							if (!repeating[dir])
+							{
+								if (gameTime.TotalGameTime.TotalMilliseconds - lastRepeatTime[dir] > 500)
+								{
+									inputSim.Keyboard.KeyPress(keycode[dir]);
+									lastRepeatTime[dir] = gameTime.TotalGameTime.TotalMilliseconds;
+									repeating[dir] = true;
+								}
+							}
+							else
+							{
+								if (gameTime.TotalGameTime.TotalMilliseconds - lastRepeatTime[dir] > 50)
+								{
+									inputSim.Keyboard.KeyPress(keycode[dir]);
+									lastRepeatTime[dir] = gameTime.TotalGameTime.TotalMilliseconds;
+								}
+							}
+						}
+					}
+					else
+					{
+						repeating[dir] = false;
+					}
 				}
 
 				// Simulate alt tab for the left trigger

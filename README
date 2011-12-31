@@ -9,13 +9,10 @@ Left-thumbstick to move the mouse cursor.
 A to do left mouse button click.
 X to do right mouse button click
 Dpad to use arrow keys.
-Right-trigger to scroll.
+Right-thumbstick to scroll.
 Left-trigger to alt-tab, then left/right on dpad or up/down on right-thumbstick to select.
 Left- and right-shoulder, start, and back (all four at once) to toggle input simulation, for instance when starting a game that uses the gamepad.
 
 ISSUES: 
 Attempting close WinPad using the gamepad causes update cycle to stop, so gamepad is unusable until it is deselected.
 When the User Account Control dialog comes up, the program is suspended so the gamepad is unusable until it is gone.
-
-TODO: 
-Add repeating presses of arrow keys when dpad direction is held.
